@@ -1,0 +1,51 @@
+SIZEOF
+R       -> 1 or 2
+int     -> 4
+dec     -> 8
+toz     -> to xthe byte 0 or EOT
+
+FLAGS
+Z       -> Zero
+L       -> Less
+G       -> Greater
+
+
+
+OPCODE  INSTRUCTION     ARG1    ARG2    ARG3    DESCRIPTION     
+
+00      HALT                                    Stops the program
+01      LDNUM           R       int             Loads a non-float number in register
+02      LDDEC           R       dec             Loads a float number in register
+03      LDTOZ           R       toz             Loads a string to the register
+04      LDBOT           R                       Loads true in the register
+05      LDBOF           R                       Loads false in the register
+06      CMP             R1      R2              Compare 2 registers, by doing R1 - R2, then store in flags
+07      CMPANY          R       S       V       Compare register ARG1 with a value ARG3 (sized ARG2)
+08      LABEL           int                     Sets a label int
+09      JMP             int                     Jump to label number ARG1
+0A      JE              int                     Jump if equal (FZ == 1)
+0B      JNE             int                     Jump if not equal (FZ != 0)
+0C      JG              int                     Jump if greater (FG == 1)
+0D      JGE             int                     Jump if greater or equal (FG == 1 or FZ == 1)
+0E      JL              int                     Jump if lesser
+0F      JLE             int                     Jump if lesser or equal
+10      SKIP            int                     Skips ARG1 instructions
+11      PUSH            R                       Pushes a register value
+12      PUSHANY         S       V               Pushes any value that have a size
+13      POP             R?                      Pops a register in ARG1 or R0 if no ARG1
+14      ADDA            R       S       V       Add a number to the register
+15      SUBA            R       S       V       Sub a number to the register
+16      MULA            R       S       V       Multiply a number to the register
+17      DIVA            R       S       V       Divides a number to the register
+18      ADD             R       R               Add in ARG1 ARG2
+19      SUB             R       R               Sub from ARG1 ARG2
+1A      MUL             R       R               Multiply ARG1 by ARG2
+1B      DIV             R       R               Divides ARG1 by ARG2
+1C      BAND            R       R               Do a binary AND with ARG1 and ARG2
+1D      BOR             R       R               Do a binary OR with ARG1 and ARG2
+1E      BXOR            R       R               Do a binary XOR with ARG1 and ARG2
+1F      AND             R       R               Checks if both args are not null or not false
+20      OR              R       R               Checks if one of the 2 args isnt null or isnt false
+21      XOR             R       R               Checks if only one value is not null
+
+

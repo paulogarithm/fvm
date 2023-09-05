@@ -1,0 +1,19 @@
+#defines
+
+toz     (to \0 or EOT)
+num     4 (uint)
+dec     8 (uint.int)
+
+====
+LDNUM   0 69            ; let foo = 69
+LDNUM   1 42            ; let bar = 42
+LDSTR   0 "Hello\0"     ; a = "Hello"
+LDBOT   0               ; a = true
+LDBOF   0               ; a = false
+LDNUM   0 56789098      ; a = 56789098
+LDNUM   1 69            ; a = 69
+ADDRL   1 3.5           ; a += 3.5          ; NOTE - En gros ca va load dans un buffer le type et la valeur
+                                            ; puis apres ca va LD si c'est pas le meme type
+ADDR    1 
+PUSH    0
+HALT

@@ -1,0 +1,47 @@
+>>> let a = 3 + 5
+LDNUM R0 3                                  (1-n)[ 3 ]
+ADDA R0 4 5                                 (1-n)[ 8 ]
+
+>>> a += 3.6
+ADDA R0 8 3.6                               (1-d)[ 11.6 ]
+
+>>> a = 3
+LDNUM R0 3                                  (1-n)[ 3 ]
+
+>>> a & 3
+BANDA R0 4 3                                (1-n)[ 3 ]
+
+>>> a and 3
+ANDA R0 4 3                                 (1-b)[ true ]
+
+>>> let b = {Hello = 3, 0.5 = "test"}       
+LDTAB R1                                    ...(2-t)[ {} ]
+TBUF R1 0 "Hello"                           ...(2-t)[ {Hello=?} ]
+TLDA R1 4 3                                 ...(2-t)[ {Hello(n)=3} ]
+TBUF R1 8 0.5                               ...(2-t)[ {Hello(n)=3, 0.5=?} ]
+TLDA R1 0 "test"                            ...(2-t)[ {Hello(n)=3, 0.5(s)="test"} ]
+
+>>> b[3] = a
+TBUF R1 4 3                                 (1-b)[ true ] (2-t)[ {... 3=?} ]
+TLDR R1 R0                                  (1-b)[ true ] (2-t)[ {... 3(b)=true} ]
+
+>>> let c = b.Hello + 5
+TPUL R1 0 "Hello"                           (z-n)[ 3 ]...
+LDR R2 RZ                                   (z-n)[ 3 ]... (3-n)[ 3 ]
+ADDA R2 4 5                                 (z-n)[ 3 ]... (3-n)[ 8 ]
+
+>>> display(c - b.Hello + 0x07)
+LDR R2 RS
+TPUL R1 0 "Hello"
+SUB RS RZ
+ADDA RS 4 7
+PUSH RS
+CALL [disp]
+CRUSH
+
+>>> let d = display(c)
+PUSH R2
+CALL [disp]
+POPR R3
+CRUSH
+

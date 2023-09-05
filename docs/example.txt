@@ -1,0 +1,36 @@
+LDNUM R1 1          ; let a = 4;
+LDNUM R2 2          ; let b = 42;
+CMP R1 R2           ; if a == b
+CHF 0b1000          ; ...
+ALAY 1              ; ...
+ALAY 2              ; ...
+LAY 1               ; then
+WTOZ "Equal"        ; write("Equal");
+LAY 2               ; else
+WTOZ "Not equal"    ; write("Not equal");
+RESLAY              ; end
+HALT                ; exit
+
+
+LDNUM R1 1          ; let a = 4;
+LDNUM R2 2          ; let b = 42;
+CMP R1 R2           ; if a == b
+CHF 0b1000          ; ...
+SKIP 2
+WTOZ "Equal"        ; write("Equal");
+SKIP 1              ; else
+WTOZ "Not equal"    ; write("Not equal");
+HALT                ; end & exit
+
+
+LDNUM R1 1          ; let a = 4;
+LDNUM R2 2          ; let b = 42;
+CMP R1 R2           ; if a == b
+JNE 1
+WTOZ "Equal"        ; write("Equal");
+JMP 2               ; else
+LABEL 1
+WTOZ "Not equal"    ; write("Not equal");
+LABEL 2             ; end
+HALT                ; exit
+

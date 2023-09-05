@@ -1,0 +1,100 @@
+  FLAGS
+ZF -> Zero flag
+TF -> Type differs flag
+LF -> Less flag
+GF -> Greater flag
+
+
+  REGISTERS
+RZ      -> The temporary register pointer (inCode) (FF)
+RZS     -> RZ's size (1Byte)
+RS      -> Swap register                  (inCode) (FE)
+RSS     -> RS's size (1Byte)
+
+SPS     -> Stack begin pointer
+SPE     -> Stack end pointer
+
+
+  TYPES def.regular (1000 0xxx)
+0 000   -> null       (0 byte)
+0 001   -> ToZ        (Read until byte 0)
+0 010   -> number     (4 bytes)
+0 011   -> double     (8 bytes)
+0 100   -> false      (0 bytes)
+0 101   -> true       (0 bytes)
+
+
+CODE    INSTRUCTION     A1      A2      A3      DESCRIPTION
+
+ 00     HALT                                    Stops the program
+ 01     NOP                                     Do nothing
+ 02     RET                                     End of the callv, jump to the previous pc
+
+ 03     LDR             R       R               Loads what is in register A2 in A1
+ 04     LDA             R       1       <A2>    Loads any value A3 sized A2 in a register A1
+ 05     LDNUM           R       4               Loads a number in A1
+ 06     LDDEC           R       8               Loads a decimal in A1
+ 07     LDTOZ           R       ...             Loads bytes until 0
+ 08     LDTRU           R                       Loads true in A1
+ 09     LDFAL           R                       Loads false in A1
+ 0A     LDTAB           R                       Loads an empty table in A1
+
+ 0B     ADD             R       R               Adds the value in A2 register in A1
+ 0C     SUB             R       R               Subs A2 to A1
+ 0D     MUL             R       R               Multiplies A1 by A2
+ 0E     DIV             R       R               Divides A1 by A2
+ 0F     BAND            R       R               Executes a binary and with A1 and A2, result stored in A1
+ 10     BOR             R       R               Executes a binary or with A1 and A2, result stored in A1
+ 11     BXOR            R       R               Executes a binary xor with A1 and A2, result stored in A1
+ 12     AND             R       R               Sets to true A1 if A1 and A2 are not null of false
+ 13     OR              R       R               Sets to true if at least A1 or A2 is not false
+ 14     XOR             R       R               Sets to true if both A1 and A2 are not null/false, or both are null/false
+ 15     ADDA            R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 16     SUBA            R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 17     MULA            R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 18     DIVA            R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 19     BANDA           R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 1A     BORA            R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 1B     BXORA           R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 1C     ANDA            R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 1D     ORA             R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+ 1E     XORA            R       1       <A2>    Same as upper, but with any values set in A3, sized by A2
+
+        LBLTOZ          ...                     Set a string label with id A1
+        CALL            ...                     Jumps to the string label A1
+        CALLC           ...                     Call a C builtin function included in files
+        SYS             ...                     Call a system instruction
+
+        LBL             2                       Sets a label with the id A1
+        JMP             2                       Jumps to the label with A1 id
+        SKIP            8                       Skips A1 lines
+        JE              2                       Jumps if equal
+        JNE             2                       Jumps if not equal
+        JG              2                       Jumps if greater
+        JGE             2                       Jumps if greater or equal
+        JL              2                       Jumps if less
+        JLE             2                       Jumps if less or equal
+
+        CMP             R       R               Compare A1 and A2 registers and changes the flags by the result of the substraction
+        CMPA            R       1       <A2>    Compare A1 with the value in A3, sized A2
+        CHF             1                       Checks the flag, and execute the next action with A1 parametters
+
+        LAY             2                       Sets the code layer to A1
+        LAYI                                    Increase the code layer
+        LAYD                                    Decrease the code layer
+        ALAY            2                       Sets the active layer (program running) to A1
+        ALAYI                                   Increase the active layer
+        ALAYD                                   Decrease the active layer
+        RESLAY                                  Sets code & active layer to 0
+
+        TBUF            R       1       <A2>    Creates a place for the table A1, at the index A3 sized A2
+        TLDA            R       1       <A2>    Load the value A3 sized A2 in A1
+        TLDR            R       R               Load the register A2 at the buffer place in A1
+        TPUL            R       1       <A2>    Pull whats is in the register A1 at index A3 sized A2 inside of RZ
+
+        PUSH            R                       Pushes a register value in the stack
+        PUSHA           1       <A1>            Pushes a register value in the stack
+        POP                                     Retrives the last stack value in RZ
+        POPR            R                       Retrieves the last stack value in A1
+        CRUSH                                   Empty the stack
+
