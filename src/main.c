@@ -56,6 +56,6 @@ int main(int argc, char const *argv[])
     ret = vm->status;
     if (ret)
         ERRN(vm, ret);
-    printf("End of code -> PC at %ld\n", vm->pc);
+    debug_reg(vm, 0);
     OK(vm);
 }

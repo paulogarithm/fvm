@@ -13,6 +13,9 @@ SRC 	= \
 		src/vm_load.c\
 		src/vm_exec.c\
 		src/ld.c\
+		src/debug.c\
+		src/print.c\
+		src/stack.c\
 
 TSRC 	= \
 		tests/tests.c\

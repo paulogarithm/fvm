@@ -12,7 +12,7 @@ static struct s_file get_file_data(const char *filename)
     struct s_file res = {0, NULL};
     struct stat st = {};
     int fd = open(filename, O_RDONLY);
-    __ssize_t read_res = 0;
+    long read_res = 0;
 
     if (stat(filename, &st) == -1)
         return errfile(errno);
@@ -60,10 +60,8 @@ int load_data(vm_t *vm, struct s_file filedata)
         vm->size = new_size;
     } else
         new_begin = vm->size - filedata.size;
-
     memcpy((char *)vm->mem + new_begin, filedata.data, filedata.size);
     push(&vm->map, (struct s_map){new_begin, new_begin + filedata.size - 1});
-
     return new_begin;
 }
 
