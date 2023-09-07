@@ -20,9 +20,6 @@ Working Opcodes, more details in `docs/new-opcodes.spec`.
 01     LOAD       Load a value in a register
 ```
 
-```
-```
-
 For example, when you do
 ```
 $ ./fvm ./bin/hello
