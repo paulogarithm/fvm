@@ -22,7 +22,7 @@ void execute(vm_t *vm, int ptr)
     vm->pc = (size_t)ptr;
     do {
         if (vm->pc >= vm->size) {
-            EXIT(vm, REACHEND);
+            EXIT(vm, REACH_END);
             dprintf(2, "Out of memory\n");
             break;
         }

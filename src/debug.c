@@ -14,7 +14,7 @@ void register_debug(vm_t *vm, unsigned short n)
     s1_t byt = vm->registersinfo[n];
     bool is_neg = MASK(byt, 0b01000000);
     s4_t a[2] = {0};
-        
+
     if (MASK(byt, 0b00000100) and not MASK(byt, 128))
         return __idc_return printf("%s\n", MASK(byt, 1) ? "true" : "false");
     if (byt == 0b00000010)

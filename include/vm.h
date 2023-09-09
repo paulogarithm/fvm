@@ -29,6 +29,7 @@ struct s_file {
 struct s_plate {
     struct s_plate *previous;
     void *data;
+    s1_t byt;
 };
 
 struct s_vm {

@@ -2,8 +2,9 @@
     #define _VMERR_H
 
 enum vmerr_e {
-    NOMEMORY = 1,
-    REACHEND,
+    NO_MEMORY = 1,
+    REACH_END,
+    WEIRD_ERR,
 };
 
 #endif /* _VMERR_H */
