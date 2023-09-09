@@ -17,5 +17,27 @@ $ ./fvm bin/hello
 Working Opcodes, more details in `docs/new-opcodes.spec`.
 ```
 00     HALT       Stops the program
-01     LD         Load a value in a register
+01     LOAD       Load a value in a register
 ```
+
+For example, when you do
+```
+$ ./fvm ./bin/hello
+10
+```
+You can check why it can do that with hexdump
+```
+$ hexdump -C ./bin/hello
+00000000  01 00 00 02 00 00 00 0a  00                       |.........|
+00000009
+```
+So we will cut it to understand how does it work :
+
+```
+01              is the opcode for LOAD
+00 00           is the register
+02              is the byt (coding byte)
+00 00 00 0a     is the number 10
+00              is the opcode for HALT
+```
+The number (for now and for debugging) will always display the register 0
