@@ -47,8 +47,6 @@ struct s_vm {
     void (*execute)(struct s_vm *, int ptr);
 };
 
-
-
 vm_t *create_new_vm(void);
 void destroy_vm(vm_t *vm);
 s8_t read_bytes(vm_t *vm, unsigned num_bytes);

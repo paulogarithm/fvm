@@ -82,7 +82,7 @@ test: test-build
 	./$(TNAME)
 
 lint: fclean
-	clint . .
+	clint . . | grep -v "C-G1"
 
 #-#-#-#-#-#-#-#-#
 

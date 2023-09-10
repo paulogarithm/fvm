@@ -30,13 +30,12 @@ static struct s_file get_file_data(const char *filename)
     return res;
 }
 
-void push(struct s_map **a, struct s_map map)
+void push_map(struct s_map **a, struct s_map map)
 {
     int size = 0;
     struct s_map *new = NULL;
 
-    while ((*a)[size].begin != -1)
-        size++;
+    for (; (*a)[size].begin != -1; ++size);
     new = realloc(*a, (size + 2) * sizeof(struct s_map));
     if (new == NULL)
         return;
@@ -53,7 +52,7 @@ int load_data(vm_t *vm, struct s_file filedata)
     if (new_size > vm->size) {
         vm->mem = realloc(vm->mem, new_size);
         if (vm->mem == NULL) {
-            perror("Memory allocation error");
+            dprintf(2, "No more data\n");
             return -1;
         }
         new_begin = vm->size;
@@ -61,7 +60,8 @@ int load_data(vm_t *vm, struct s_file filedata)
     } else
         new_begin = vm->size - filedata.size;
     memcpy((char *)vm->mem + new_begin, filedata.data, filedata.size);
-    push(&vm->map, (struct s_map){new_begin, new_begin + filedata.size - 1});
+    push_map(&vm->map,
+        (struct s_map){new_begin, new_begin + filedata.size - 1});
     return new_begin;
 }
 
