@@ -52,7 +52,7 @@ void ld_data_manual(vm_t *vm, s2_t reg, s1_t byt, void *data)
 
 static void ld_data(vm_t *vm, s2_t reg, short rd)
 {
-    void *data = (void *)vm_read(vm, rd);
+    s8_t data = vm_read(vm, rd);
 
     if (rd == -1)
         return;

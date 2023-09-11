@@ -23,7 +23,7 @@ void execute(vm_t *vm, int ptr)
     do {
         if (vm->pc >= vm->size) {
             EXIT(vm, REACH_END);
-            dprintf(2, "Out of memory\n");
+            fprintf(stderr, "Out of memory\n");
             break;
         }
         opcode = ((s1_t *)vm->mem)[vm->pc];

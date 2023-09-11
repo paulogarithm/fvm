@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "vm.h"
 
@@ -52,7 +53,7 @@ int load_data(vm_t *vm, struct s_file filedata)
     if (new_size > vm->size) {
         vm->mem = realloc(vm->mem, new_size);
         if (vm->mem == NULL) {
-            dprintf(2, "No more data\n");
+            fprintf(stderr, "No more data\n");
             return -1;
         }
         new_begin = vm->size;
@@ -71,7 +72,7 @@ int load(vm_t *vm, const char *filename)
     int ptr = 0;
 
     if (f.data == NULL) {
-        dprintf(2, "%s\n", strerror(f.size));
+        fprintf(stderr, "%s\n", strerror(f.size));
         return -1;
     }
     ptr = load_data(vm, f);

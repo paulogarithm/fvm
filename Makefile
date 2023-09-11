@@ -29,6 +29,11 @@ CPPFLAGS 	+= -iquote./include
 LDFLAGS		+=
 WFLAGS		+= -e c -e h
 
+ifeq ($(OS),Windows_NT)
+	NAME = fvm.exe
+	RM = del /Q /F
+endif
+
 #-#-#-#-#-#-#-#-#
 
 .PHONY: $(NAME) all
@@ -44,10 +49,14 @@ all: $(NAME)
 .PHONY: clean fclean
 
 clean:
+ifeq ($(OS),Windows_NT)
+	for /r %%f in (*.o) do $(RM) %%f
+else
 	$(RM) $(OBJ)
 	$(RM) $(TOBJ)
 	$(RM) $(MAINOBJ)
 	find . -name '*.gc*' -exec $(RM) {} \;
+endif
 
 fclean: clean
 	$(RM) $(NAME)

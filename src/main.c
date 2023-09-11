@@ -34,7 +34,7 @@ void dump_map(vm_t *vm)
 
 int disperr(vm_t *vm, const char *msg)
 {
-    dprintf(STDERR_FILENO, "%s\n", msg);
+    fprintf(stderr, "%s\n", msg);
     ERR(vm);
 }
 
