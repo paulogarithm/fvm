@@ -1,0 +1,38 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CHECK: "check.sh"
+  REPORTS: "coding-style-reports.log"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "build source code"
+        run: make
+      
+  coding-style:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - name: "execute coding style"
+      - uses: actions/checkout@v3
+      - run: |
+          $CHECK $(pwd) $(pwd)
+
+      - name: "check the coding style"
+      - run: |
+          RES=`cat $REPORTS | grep -v "C-G1" | wc -l`;
+          if [[ ${RES} > 3 ]]; then
+            echo "::error:: Too many Coding-Style errors..."
+            cat $REPORTS;
+            exit 1;
+          fi
