@@ -11,7 +11,7 @@ COPY . /app
 RUN make re
 
 RUN chmod +x /app/fvm
-RUN chmod +x /app/docker/entrypoint.sh
+RUN chmod +x /app/docker/entrypoint
 RUN chmod +x /app/bin/*
 
 ENTRYPOINT ["/app/docker/entrypoint.sh"]
