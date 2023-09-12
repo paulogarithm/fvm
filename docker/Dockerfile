@@ -14,6 +14,5 @@ RUN chmod +x /app/fvm
 RUN chmod +x /app/docker/entrypoint
 RUN chmod +x /app/bin/*
 
-ENTRYPOINT ["/app/docker/entrypoint.sh"]
+ENTRYPOINT ["/app/docker/entrypoint"]
 
-CMD ["/app/fvm"]
