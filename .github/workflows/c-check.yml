@@ -29,13 +29,15 @@ jobs:
       - name: "Execute coding style"
         run: $CHECK $(pwd) $(pwd)
         working-directory: src
+
       - name: "Check the coding style"
-        # RES=$(cat $REPORTS | grep -v "C-G1" | grep -v "C-L" | grep -v "C-H" | wc -l)
         run: |
-          RES=$(cat $REPORTS | grep -v "C-G1" | grep -v "C-L" | wc -l)
-          cat $REPORTS | grep -v "C-G1" | grep -v "C-L"
+          RES=$(cat $REPORTS | grep -v "C-G1" | grep -v "C-L" | wc -l);
           if [[ ${RES} -gt 3 ]]; then
-            echo "::error:: Too many Coding-Style errors..."
-            exit 1
+            echo "Error";
+            cat $REPORTS | grep -v "C-G1" | grep -v "C-L";
+            echo "::error:: Too many Coding-Style errors...";
+            exit 1;
           fi
+          exit 0;
         working-directory: src
