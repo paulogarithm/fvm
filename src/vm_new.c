@@ -2,9 +2,7 @@
 #include <string.h>
 
 #include "vm.h"
-
-int load(vm_t *vm, const char *filename);
-void execute(vm_t *vm, int ptr);
+#include "vmfunc.h"
 
 vm_t *create_new_vm(void)
 {

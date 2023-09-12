@@ -3,9 +3,7 @@
 
 #include "vmerr.h"
 #include "vm.h"
-
-short get_size_to_read(s1_t byt);
-void ld_data_manual(vm_t *vm, s2_t reg, s1_t byt, void *data);
+#include "vmfunc.h"
 
 void push_data(vm_t *vm, void *data, s1_t byt)
 {

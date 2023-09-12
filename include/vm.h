@@ -4,17 +4,8 @@
     #include <stdbool.h>
     #include <stddef.h>
     #include <iso646.h>
-    #include <stdint.h>
 
-typedef uint8_t s1_t;
-typedef uint16_t s2_t;
-typedef uint32_t s4_t;
-typedef uint64_t s8_t;
-
-typedef struct s_vm vm_t;
-
-    #define SIZE_REG_BYTE s2_t
-    #define LEN_REG __SHRT_MAX__ * 2
+    #include "vmdef.h"
 
 struct s_map {
     int begin;
