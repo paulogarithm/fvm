@@ -2,19 +2,32 @@
 
 A C Virtual machine who interprets a custom machine language (maybe for a future project...)
 
+<br>
+
 ## Requierments
 
 The requirements are
 - make
 - gcc
 
-working on :
+Or
+- docker
+
+Working on :
 - windows
 - linux
 
-<br><br>
+<br>
 
 ## Build
+
+### Docker
+
+Run the `docker/run-win.bat` or `docker/run-linux.sh` file.
+
+<br>
+
+### Manually
 
 To compile, do :
 ```sh
