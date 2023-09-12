@@ -29,7 +29,6 @@ jobs:
       - name: "Execute coding style"
         run: $CHECK $(pwd) $(pwd)
         working-directory: src
-
       - name: "Check the coding style"
         run: |
           RES=$(cat $REPORTS | grep -v "C-G1" | grep -v "C-L" | wc -l);
