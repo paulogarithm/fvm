@@ -29,6 +29,7 @@ jobs:
           $CHECK $(pwd) $(pwd)
 
       - name: "check the coding style"
+      - uses: actions/checkout@v3
       - run: |
           RES=`cat $REPORTS | grep -v "C-G1" | wc -l`;
           if [[ ${RES} > 3 ]]; then
