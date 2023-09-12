@@ -23,13 +23,13 @@ jobs:
     container:
       image: ghcr.io/epitech/coding-style-checker:latest
     steps:
-      - name: "execute coding style"
       - uses: actions/checkout@v3
+      - name: "execute coding style"
       - run: |
           $CHECK $(pwd) $(pwd)
-
-      - name: "check the coding style"
+    
       - uses: actions/checkout@v3
+      - name: "check the coding style"
       - run: |
           RES=`cat $REPORTS | grep -v "C-G1" | wc -l`;
           if [[ ${RES} > 3 ]]; then
