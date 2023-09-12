@@ -2,6 +2,8 @@
 
 A C Virtual machine who interprets a custom machine language (maybe for a future project...)
 
+## Requierments
+
 The requirements are
 - make
 - gcc
@@ -11,6 +13,8 @@ working on :
 - linux
 
 <br><br>
+
+## Build
 
 To compile, do :
 ```sh
