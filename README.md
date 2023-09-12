@@ -6,12 +6,11 @@ A C Virtual machine who interprets a custom machine language (maybe for a future
 
 ## Requierments
 
-The requirements are
-- make
-- gcc
+The requirements are:
 
-Or
-- docker
+`make` + `gcc`, or you can only use `docker`
+
+<br>
 
 Working on :
 - windows
@@ -21,20 +20,40 @@ Working on :
 
 ## Build
 
-### Docker
+### Docker ( 👎 not cool people )
 
-Run the `docker/run-win.bat` or `docker/run-linux.sh` file.
+Run the `docker/run-win.bat` or `docker/run-linux.sh` file, followed by the args (see bellow)
+
+For example on linux:
+```sh
+> sh docker/run-linux.sh bin/hello
+```
+
+On windows:
+```sh
+> docker\run-linux.bat bin\hello
+```
 
 <br>
 
-### Manually
+### Manually ( 💪 cool people )
+
+
+First, clone the repository
+```sh
+> git clone https://github.com/paulogarithm/fvm
+```
 
 To compile, do :
 ```sh
 > make
 ```
 
-Then you can use the fvm with your file:
+<br>
+
+## How to use
+
+You can use the fvm executable with your file:
 ```sh
 > ./fvm bin/hello
 ```
