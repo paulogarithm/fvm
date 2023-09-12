@@ -14,26 +14,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: "build source code"
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+      - name: "Build source code"
         run: make
-      
+
   coding-style:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/epitech/coding-style-checker:latest
     steps:
-      - uses: actions/checkout@v3
-      - name: "execute coding style"
-      - run: |
-          $CHECK $(pwd) $(pwd)
-    
-      - uses: actions/checkout@v3
-      - name: "check the coding style"
-      - run: |
-          RES=`cat $REPORTS | grep -v "C-G1" | wc -l`;
-          if [[ ${RES} > 3 ]]; then
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+      - name: "Execute coding style"
+        run: $CHECK $(pwd) $(pwd)
+        working-directory: src
+      - name: "Check the coding style"
+        run: |
+          RES=$(cat $REPORTS | grep -v "C-G1" | wc -l)
+          if [[ ${RES} -gt 3 ]]; then
             echo "::error:: Too many Coding-Style errors..."
-            cat $REPORTS;
-            exit 1;
+            cat $REPORTS
+            exit 1
           fi
+        working-directory: src
