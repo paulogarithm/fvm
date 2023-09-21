@@ -1,7 +1,7 @@
 #include <criterion/criterion.h>
 #include "vm.h"
 
-void push_data(vm_t *vm, void *data, s1_t byt);
+void push_data(vm_t *vm, void *data, size1_t byt);
 void pop_register(vm_t *vm, unsigned short n);
 
 Test(new_vm, pc_check) {
@@ -16,8 +16,8 @@ Test(new_vm, map_check) {
 
 Test(stack, stack_stuff) {
     vm_t *vm = vm_new();
-    s4_t n = 3;
-    s1_t byt = 0b00000010;
+    size4_t n = 3;
+    size1_t byt = 0b00000010;
     push_data(vm, &n, byt);
     pop_register(vm, 0);
     cr_assert_eq(*((int *)vm->registers[0]), 3, "Need to be the pushed val");

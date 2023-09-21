@@ -22,7 +22,7 @@ static void free_stack(vm_t *vm)
     }
 }
 
-void destroy_vm(vm_t *vm)
+void vm_destroy(vm_t *vm)
 {
     if (vm == NULL)
         return;

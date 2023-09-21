@@ -4,7 +4,7 @@
 #include "vm.h"
 #include "vmfunc.h"
 
-vm_t *create_new_vm(void)
+vm_t *vm_new(void)
 {
     vm_t *self = (vm_t *)malloc(sizeof(vm_t));
 

@@ -1,6 +1,6 @@
 #include "vm.h"
 
-void print(vm_t __idc_argument *vm, unsigned short __idc_argument n)
+void print(vm_t DONT_CARE_ARG *vm, unsigned short DONT_CARE_ARG n)
 {
     return;
 }

@@ -3,8 +3,7 @@
 #include <malloc.h>
 
 #include "vm.h"
-
-// --- //
+#include "vmfunc.h"
 
 void dump_data(vm_t *vm)
 {
@@ -22,13 +21,8 @@ void dump_data(vm_t *vm)
 void dump_map(vm_t *vm)
 {
     printf("Map contents: ");
-    int i = 0;
-    while (1) {
-        if (vm->map[i].begin < 0 || vm->map[i].end < 0)
-            break;
+    for (int i = 0; vm->map[i].begin < 0 or vm->map[i].end < 0; ++i)
         printf("(%d, %d) ", vm->map[i].begin, vm->map[i].end);
-        i++;
-    }
     printf("\n");
 }
 
@@ -56,6 +50,6 @@ int main(int argc, char const *argv[])
     ret = vm->status;
     if (ret)
         ERRN(vm, ret);
-    debug_reg(vm, 0);
+    d__register(vm, 0);
     OK(vm);
 }
