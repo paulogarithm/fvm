@@ -4,7 +4,6 @@
     #include <stdbool.h>
     #include <stddef.h>
     #include <iso646.h>
-
     #include "vmdef.h"
 
 struct s_map {
@@ -37,8 +36,6 @@ struct s_vm {
     int (*load)(struct s_vm *, const char *);
     void (*execute)(struct s_vm *, int ptr);
 };
-
-void d__register(vm_t *vm, unsigned short n);
 
     #ifndef _HAS_DESTROY
         void vm_destroy(vm_t *vm);

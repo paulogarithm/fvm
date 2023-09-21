@@ -11,10 +11,10 @@ void execute(vm_t *vm, int ptr);
 
 vm_t *vm_new(void);
 size8_t vm_read(vm_t *vm, unsigned num_bytes);
-
     #ifndef _HAS_DESTROY
         void vm_destroy(vm_t *vm);
         #define _HAS_DESTROY
     #endif /* _HAS_DESTROY */
+void d__register(vm_t *vm, unsigned short n);
 
 #endif /* _VMFUNC_H */
